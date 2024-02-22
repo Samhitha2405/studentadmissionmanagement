@@ -1,0 +1,53 @@
+<!-- student_list.html -->
+{% extends 'navbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+</head>
+<body>
+{% block body %}
+    <h1>Student List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Aadhar Number</th>
+                <th>10/Inter Memo</th>
+                <th>Passport Size Photo</th>
+                <th>Email</th>
+                <th>Mother Name</th>
+                <th>Father Name</th>
+                <th>Student Phone Number</th>
+                <th>Parent Phone Number</th>
+                <th>Assign ID Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{{ student.date_of_birth }}</td>
+                    <td>{{ student.aadhar_number }}</td>
+                    <td><a href="{{ student.memo.url }}">{{ student.memo.name }}</a></td>
+                    <td><img src="{{ student.photo.url }}" alt="{{ student.first_name }}'s Photo" height="100"></td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.mother_name }}</td>
+                    <td>{{ student.father_name }}</td>
+                    <td>{{ student.student_phone_number }}</td>
+                    <td>{{ student.parent_phone_number }}</td>
+                    <td>{{ student.assign_id_number }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_student' %}">Add Student</a>
+{% endblock %}
+</body>
+</html>
